@@ -1,9 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:sailing_loc/features/user_auth/presentation/pages/login_page.dart';
-import 'package:sailing_loc/features/user_auth/presentation/pages/sign_up.dart';
-import 'package:sailing_loc/navigation.dart';
-import 'package:sailing_loc/pages/page1.dart';
+import 'package:sailing_loc/features/home/widgets/class_cards.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,6 +10,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<Map<String, dynamic>> classData = [
+    {
+      'title': 'Math 101',
+      'description': 'Basic Algebra and Calculus',
+      'icon': Icons.calculate
+    },
+    {
+      'title': 'Science 101',
+      'description': 'Introduction to Physics',
+      'icon': Icons.science
+    },
+    {
+      'title': 'History 101',
+      'description': 'World History Overview',
+      'icon': Icons.history_edu
+    },
+    {
+      'title': 'Art 101',
+      'description': 'Fundamentals of Art',
+      'icon': Icons.palette
+    },
+    {
+      'title': 'Computer Science 101',
+      'description': 'Introduction to Programming',
+      'icon': Icons.computer
+    },
+  ];
   double? screenHeight;
   double? screenWidth;
 
@@ -25,8 +49,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
-
-    final isSmallScreen = screenWidth! < 715;
 
     return SafeArea(
       top: true,
@@ -52,19 +74,19 @@ class _HomePageState extends State<HomePage> {
                 height: 400.0,
                 enableInfiniteScroll: true,
                 autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
+                autoPlayInterval: const Duration(seconds: 3),
               ),
               items: [1, 2, 3, 4, 5].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(color: Colors.amber),
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                      decoration: const BoxDecoration(color: Colors.amber),
                       child: Center(
                         child: Text(
                           'text $i',
-                          style: TextStyle(fontSize: 16.0),
+                          style: const TextStyle(fontSize: 16.0),
                         ),
                       ),
                     );
@@ -76,7 +98,21 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
           Text('Chercher un bateau'),
           SizedBox(height: 10),
-          Text('Type des bateaux'),
+          Container(
+            height: 200, // Specify the height for the ListView
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: classData.length,
+              itemBuilder: (context, index) {
+                final classItem = classData[index];
+                return ClassCard(
+                  title: classItem['title'],
+                  description: classItem['description'],
+                  icon: classItem['icon'],
+                );
+              },
+            ),
+          )
         ],
       ),
     );

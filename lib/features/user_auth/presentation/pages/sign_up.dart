@@ -1,11 +1,38 @@
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sailing_loc/features/user_auth/presentation/pages/login_page.dart';
+import 'package:sailing_loc/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:sailing_loc/features/user_auth/presentation/widgets/form_container_widget.dart';
+import 'package:sailing_loc/global/common/toast.dart';
 import 'package:sailing_loc/navigation.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  bool _isSigningUp = false;
+
+  final FirebaseAuthService _auth = FirebaseAuthService();
+
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _fnameController = TextEditingController();
+  TextEditingController _lnameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _fnameController.dispose();
+    _lnameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,61 +51,69 @@ class SignUpPage extends StatelessWidget {
               height: 30,
             ),
             FormContainerWidget(
-              placeholder: "Username",
+              controller: _usernameController,
+              hintText: "Username",
               isPasswordField: false,
             ),
             SizedBox(
               height: 10,
             ),
             FormContainerWidget(
-              placeholder: "Prénom",
+              controller: _fnameController,
+              hintText: "Prénom",
               isPasswordField: false,
             ),
             SizedBox(
               height: 10,
             ),
             FormContainerWidget(
-              placeholder: "Nom",
+              controller: _lnameController,
+              hintText: "Nom",
               isPasswordField: false,
             ),
             SizedBox(
               height: 10,
             ),
             FormContainerWidget(
-              placeholder: "Email Adress",
+              controller: _emailController,
+              hintText: "Email Adress",
               isPasswordField: false,
             ),
             SizedBox(
               height: 10,
             ),
             FormContainerWidget(
-              placeholder: "Mot de passe",
+              controller: _passwordController,
+              hintText: "Mot de passe",
               isPasswordField: true,
             ),
             SizedBox(
               height: 10,
             ),
             FormContainerWidget(
-              placeholder: "Confirmer le mot de passe",
+              controller: _confirmPasswordController,
+              hintText: "Confirmer le mot de passe",
               isPasswordField: true,
             ),
             SizedBox(
               height: 30,
             ),
             GestureDetector(
-              onTap: () {
-                Navigation.mainNavigation.currentState!
-                    .pushReplacementNamed("/login");
-              },
+              onTap: _signUp,
               child: Container(
                 width: width * 0.2,
                 height: height * 0.06,
                 child: Center(
-                    child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                )),
+                    child: _isSigningUp
+                        ? CircularProgressIndicator(
+                            color: Colors.white,
+                          )
+                        : Text(
+                            "Sign Up",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          )),
                 decoration: BoxDecoration(
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(10)),
@@ -88,5 +123,30 @@ class SignUpPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _signUp() async {
+    setState(() {
+      _isSigningUp = true;
+    });
+    String username = _usernameController.text;
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    String fname = _fnameController.text;
+    String lname = _lnameController.text;
+
+    User? user = await _auth.signUpWithEmailAndPassword(
+        username, email, password, fname, lname);
+
+    setState(() {
+      _isSigningUp = false;
+    });
+    if (user != null) {
+      print("User is successfully created");
+      showToast(message: "l'utilisateur est créé avec succès");
+      Navigation.mainNavigation.currentState!.pushReplacementNamed("/");
+    } else {
+      showToast(message: "une erreur s'est produite ");
+    }
   }
 }

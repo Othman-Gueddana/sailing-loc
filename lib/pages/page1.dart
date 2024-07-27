@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sailing_loc/features/user_auth/presentation/pages/sign_up.dart';
 import 'package:sailing_loc/navigation.dart';
 
 class Page1 extends StatefulWidget {

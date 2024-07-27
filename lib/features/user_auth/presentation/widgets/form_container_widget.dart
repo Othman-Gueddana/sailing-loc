@@ -5,12 +5,12 @@ class FormContainerWidget extends StatefulWidget {
   final TextEditingController? controller;
   final Key? fieldKey;
   final bool? isPasswordField;
-  final String? placeholder;
+  final String? hintText;
   final String? labelText;
   final String? helperText;
   final FormFieldSetter<String>? onSaved;
   final FormFieldValidator<String>? validator;
-  final ValueChanged<String>? onFiledSubmitted;
+  final ValueChanged<String>? onFieldSubmitted;
   final TextInputType? inputType;
 
   const FormContainerWidget(
@@ -18,12 +18,12 @@ class FormContainerWidget extends StatefulWidget {
       this.controller,
       this.fieldKey,
       this.isPasswordField,
-      this.placeholder,
+      this.hintText,
       this.labelText,
       this.helperText,
       this.onSaved,
       this.validator,
-      this.onFiledSubmitted,
+      this.onFieldSubmitted,
       this.inputType});
 
   @override
@@ -41,15 +41,33 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
       decoration: BoxDecoration(
           color: Colors.grey.withOpacity(.35),
           borderRadius: BorderRadius.circular(20)),
-      child: new CupertinoTextField(
+      child: new TextFormField(
         style: TextStyle(color: Colors.blue),
-        placeholder: widget.placeholder,
-        placeholderStyle: TextStyle(color: Colors.white),
         controller: widget.controller,
         keyboardType: widget.inputType,
         key: widget.key,
         obscureText: widget.isPasswordField == true ? _obsecureText : false,
-        decoration: BoxDecoration(),
+        onSaved: widget.onSaved,
+        validator: widget.validator,
+        onFieldSubmitted: widget.onFieldSubmitted,
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            filled: true,
+            hintText: widget.hintText,
+            hintStyle: TextStyle(color: Colors.black45),
+            suffixIcon: new GestureDetector(
+              onTap: () {
+                setState(() {
+                  _obsecureText = !_obsecureText;
+                });
+              },
+              child: widget.isPasswordField == true
+                  ? Icon(
+                      _obsecureText ? Icons.visibility_off : Icons.visibility,
+                      color: _obsecureText ? Colors.blue : Colors.grey,
+                    )
+                  : Text(""),
+            )),
       ),
     );
   }

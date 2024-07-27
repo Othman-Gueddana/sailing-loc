@@ -9,8 +9,8 @@ class CustomTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tab(
       child: Text(
-        this.title,
-        style: TextStyle(fontSize: 10),
+        title,
+        style: const TextStyle(fontSize: 10),
       ),
     );
   }

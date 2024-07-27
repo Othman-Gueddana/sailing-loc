@@ -1,10 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sailing_loc/features/home/HomePage.dart';
 import 'package:sailing_loc/features/user_auth/presentation/pages/login_page.dart';
 import 'package:sailing_loc/features/user_auth/presentation/pages/sign_up.dart';
 import 'package:sailing_loc/navigation.dart';
-import 'package:sailing_loc/pages/page1.dart';
-import 'package:sailing_loc/pages/page2.dart';
 
 class MyMainPage extends StatefulWidget {
   const MyMainPage({super.key});
@@ -16,6 +15,8 @@ class MyMainPage extends StatefulWidget {
 class _MyMainPageState extends State<MyMainPage> {
   double? screenHeight;
   double? screenWidth;
+
+  bool? signedIn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +78,14 @@ class _MyMainPageState extends State<MyMainPage> {
                       onTap: () {
                         Navigation.mainNavigation.currentState!
                             .pushReplacementNamed("/login");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Profile"),
+                      onTap: () {
+                        Navigation.mainNavigation.currentState!
+                            .pushReplacementNamed("/profile");
+                        FirebaseAuth.instance.signOut();
                       },
                     ),
                   ],
@@ -149,6 +158,14 @@ class _MyMainPageState extends State<MyMainPage> {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                            onPressed: () {
+                              Navigation.mainNavigation.currentState!
+                                  .pushReplacementNamed("/profile");
+                            },
+                            child: Icon(Icons.person)),
                       ),
                     ],
                   ),

@@ -1,11 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sailing_loc/features/home/HomePage.dart';
 import 'package:sailing_loc/features/user_auth/presentation/pages/login_page.dart';
 import 'package:sailing_loc/features/user_auth/presentation/pages/sign_up.dart';
-import 'package:sailing_loc/pages/home_page.dart';
 import 'package:sailing_loc/pages/main_page.dart';
 
 Future main() async {

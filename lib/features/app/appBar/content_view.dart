@@ -5,5 +5,5 @@ class ContentView {
   final CustomTab tab;
   final Widget content;
 
-  ContentView(@required this.tab, @required this.content);
+  ContentView(this.tab, this.content);
 }
