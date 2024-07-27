@@ -34,12 +34,11 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: "",
       routes: {
-        "": (context) => HomePage(),
-        "/main": (context) => MyMainPage(),
-        "/signUp": (context) => SignUpPage(),
+        "": (context) => MyMainPage(),
+        "/signup": (context) => SignUpPage(),
         "/login": (context) => LoginPage(),
       },
-      home: MyHomePage(),
+      home: MyMainPage(),
     );
   }
 }

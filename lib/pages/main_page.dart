@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sailing_loc/features/home/HomePage.dart';
+import 'package:sailing_loc/features/user_auth/presentation/pages/login_page.dart';
+import 'package:sailing_loc/features/user_auth/presentation/pages/sign_up.dart';
 import 'package:sailing_loc/navigation.dart';
 import 'package:sailing_loc/pages/page1.dart';
 import 'package:sailing_loc/pages/page2.dart';
@@ -11,33 +14,147 @@ class MyMainPage extends StatefulWidget {
 }
 
 class _MyMainPageState extends State<MyMainPage> {
+  double? screenHeight;
+  double? screenWidth;
+
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
+
+    final isSmallScreen = screenWidth! < 715;
+
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(
-        title: Text("My main Page"),
-        actions: [
-          Expanded(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("Home"),
+      resizeToAvoidBottomInset: true,
+      drawer: isSmallScreen
+          ? GestureDetector(
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+              child: Drawer(
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: <Widget>[
+                    ListTile(
+                      title: Text("Accueil"),
+                      onTap: () {
+                        Navigation.mainNavigation.currentState!
+                            .pushReplacementNamed("/");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Louer un bateau"),
+                      onTap: () {
+                        Navigation.mainNavigation.currentState!
+                            .pushReplacementNamed("/");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Louer mon bateau"),
+                      onTap: () {
+                        Navigation.mainNavigation.currentState!
+                            .pushReplacementNamed("/");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Permis & formation"),
+                      onTap: () {
+                        Navigation.mainNavigation.currentState!
+                            .pushReplacementNamed("/");
+                      },
+                    ),
+                    ListTile(
+                      title: Text("S'inscrire"),
+                      onTap: () {
+                        Navigation.mainNavigation.currentState!
+                            .pushReplacementNamed("/signup");
+                        Navigator.pop(context);
+                      },
+                    ),
+                    ListTile(
+                      title: Text("Login"),
+                      onTap: () {
+                        Navigation.mainNavigation.currentState!
+                            .pushReplacementNamed("/login");
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : null,
+      appBar: isSmallScreen
+          ? AppBar()
+          : AppBar(
+              actions: [
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Flexible(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigation.mainNavigation.currentState!
+                                .pushReplacementNamed("/");
+                          },
+                          child: Image.asset(
+                            "assets/icons/name_logo.png",
+                          ),
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigation.mainNavigation.currentState!
+                                .pushReplacementNamed("/");
+                          },
+                          child: Text("Louer un bateau"),
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/main');
+                          },
+                          child: Text("Louer mon bateau"),
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/main');
+                          },
+                          child: Text("Permis & formation"),
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigation.mainNavigation.currentState!
+                                .pushReplacementNamed("/signup");
+                          },
+                          child: Text("S'inscrire"),
+                        ),
+                      ),
+                      Flexible(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigation.mainNavigation.currentState!
+                                .pushReplacementNamed("/login");
+                          },
+                          child: Text(
+                            "Login",
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
-          ),
-          Expanded(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("S'inscrire"),
-            ),
-          ),
-          Expanded(
-            child: TextButton(
-              onPressed: () {},
-              child: Text("Login"),
-            ),
-          ),
-        ],
-      ),
       body: Container(
         child: Column(
           children: [
@@ -51,17 +168,22 @@ class _MyMainPageState extends State<MyMainPage> {
                   switch (settings.name) {
                     case "/":
                       {
-                        page = Page1();
+                        page = HomePage();
                         break;
                       }
-                    case "/main/2":
+                    case "/login":
                       {
-                        page = Page2();
+                        page = LoginPage();
+                        break;
+                      }
+                    case "/signup":
+                      {
+                        page = SignUpPage();
                         break;
                       }
                     default:
                       {
-                        page = Page1();
+                        page = HomePage();
                       }
                   }
                   return PageRouteBuilder(

@@ -11,78 +11,81 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("SignUp",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-          SizedBox(
-            height: 30,
-          ),
-          FormContainerWidget(
-            placeholder: "Username",
-            isPasswordField: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FormContainerWidget(
-            placeholder: "Prénom",
-            isPasswordField: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FormContainerWidget(
-            placeholder: "Nom",
-            isPasswordField: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FormContainerWidget(
-            placeholder: "Email Adress",
-            isPasswordField: false,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FormContainerWidget(
-            placeholder: "Mot de passe",
-            isPasswordField: true,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          FormContainerWidget(
-            placeholder: "Confirmer le mot de passe",
-            isPasswordField: true,
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigation.mainNavigation.currentState!.pushNamed("/main/2");
-            },
-            child: Container(
-              width: width * 0.2,
-              height: height * 0.06,
-              child: Center(
-                  child: Text(
-                "Sign Up",
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              )),
-              decoration: BoxDecoration(
-                  color: Colors.purple,
-                  borderRadius: BorderRadius.circular(10)),
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("SignUp",
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+            SizedBox(
+              height: 30,
             ),
-          )
-        ],
+            FormContainerWidget(
+              placeholder: "Username",
+              isPasswordField: false,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FormContainerWidget(
+              placeholder: "Prénom",
+              isPasswordField: false,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FormContainerWidget(
+              placeholder: "Nom",
+              isPasswordField: false,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FormContainerWidget(
+              placeholder: "Email Adress",
+              isPasswordField: false,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FormContainerWidget(
+              placeholder: "Mot de passe",
+              isPasswordField: true,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FormContainerWidget(
+              placeholder: "Confirmer le mot de passe",
+              isPasswordField: true,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigation.mainNavigation.currentState!
+                    .pushReplacementNamed("/login");
+              },
+              child: Container(
+                width: width * 0.2,
+                height: height * 0.06,
+                child: Center(
+                    child: Text(
+                  "Sign Up",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                )),
+                decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(10)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

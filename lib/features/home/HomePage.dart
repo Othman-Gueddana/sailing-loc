@@ -1,5 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:sailing_loc/features/user_auth/presentation/pages/login_page.dart';
+import 'package:sailing_loc/features/user_auth/presentation/pages/sign_up.dart';
+import 'package:sailing_loc/navigation.dart';
+import 'package:sailing_loc/pages/page1.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,108 +32,9 @@ class _HomePageState extends State<HomePage> {
       top: true,
       right: true,
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        drawer: isSmallScreen
-            ? Drawer(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: <Widget>[
-                    ListTile(
-                      title: Text("Louer un bateau"),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                    ),
-                    ListTile(
-                      title: Text("Louer mon bateau"),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                    ),
-                    ListTile(
-                      title: Text("Permis & formation"),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                    ),
-                    ListTile(
-                      title: Text("S'inscrire"),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                    ),
-                    ListTile(
-                      title: Text("Login"),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                    ),
-                  ],
-                ),
-              )
-            : null,
-        appBar: isSmallScreen
-            ? AppBar(
-                title: Text('Menu'),
-                actions: [
-                  IconButton(
-                    icon: Icon(Icons.menu),
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                  ),
-                ],
-              )
-            : AppBar(
-                actions: [
-                  Flexible(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                      child: Text("Louer un bateau"),
-                    ),
-                  ),
-                  Flexible(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                      child: Text("Louer mon bateau"),
-                    ),
-                  ),
-                  Flexible(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                      child: Text("Permis & formation"),
-                    ),
-                  ),
-                  Flexible(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                      child: Text("S'inscrire"),
-                    ),
-                  ),
-                  Flexible(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/main');
-                      },
-                      child: Text(
-                        "Login",
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: desktopView(),
+          child: Container(child: desktopView()),
         ),
       ),
     );
