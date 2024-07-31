@@ -3,18 +3,17 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sailing_loc/features/user_auth/presentation/pages/login_page.dart';
 import 'package:sailing_loc/features/user_auth/presentation/pages/sign_up.dart';
-import 'package:sailing_loc/pages/main_page.dart';
+import 'package:sailing_loc/view/main_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
     await Firebase.initializeApp(
         options: FirebaseOptions(
-      apiKey: "AIzaSyBgWh0m8q6wylAVH630hbbI8H_GZodIgEs",
-      appId: "1:128519448025:web:8ceff0448f09791bece5c8",
-      messagingSenderId: "128519448025",
-      projectId: "sailing-loc-daf3b",
-    ));
+            apiKey: "AIzaSyC8b57hrJ8bGU1JhbpehYH2cSPJWP0aCUQ",
+            projectId: "sailing-loc-365bd",
+            messagingSenderId: "11653458982",
+            appId: "1:11653458982:web:4fdc6c64b50a42454d4ae7"));
   }
   await Firebase.initializeApp();
   runApp(const MyApp());

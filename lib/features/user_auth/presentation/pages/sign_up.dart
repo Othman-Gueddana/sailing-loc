@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sailing_loc/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:sailing_loc/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:sailing_loc/global/common/toast.dart';
-import 'package:sailing_loc/navigation.dart';
+import 'package:sailing_loc/global/common/navigation.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -115,7 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 fontWeight: FontWeight.bold),
                           )),
                 decoration: BoxDecoration(
-                    color: Colors.purple,
+                    color: Colors.blue.shade900,
                     borderRadius: BorderRadius.circular(10)),
               ),
             )
@@ -146,7 +146,9 @@ class _SignUpPageState extends State<SignUpPage> {
       showToast(message: "l'utilisateur est créé avec succès");
       Navigation.mainNavigation.currentState!.pushReplacementNamed("/");
     } else {
-      showToast(message: "une erreur s'est produite ");
+      showToast(
+        message: "une erreur s'est produite ",
+      );
     }
   }
 }

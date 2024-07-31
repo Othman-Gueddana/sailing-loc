@@ -1,51 +1,40 @@
 import 'package:flutter/material.dart';
 
 class ClassCard extends StatelessWidget {
-  final String title;
-  final String description;
-  final IconData icon;
+  final String? title;
+
+  final String img;
 
   const ClassCard({
     Key? key,
     required this.title,
-    required this.description,
-    required this.icon,
+    required this.img,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      margin: EdgeInsets.all(10),
       child: Container(
         width: 200,
+        height: 120,
         padding: EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: 48,
-              color: Theme.of(context).primaryColor,
-            ),
-            SizedBox(height: 16),
+            Container(width: 50, height: 50, child: Image.asset(img)),
             Text(
-              title,
+              title!,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              description,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
               ),
             ),
           ],

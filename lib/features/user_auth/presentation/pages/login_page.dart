@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sailing_loc/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:sailing_loc/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:sailing_loc/global/common/toast.dart';
-import 'package:sailing_loc/navigation.dart';
+import 'package:sailing_loc/global/common/navigation.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -38,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Login",
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
@@ -77,10 +78,11 @@ class _LoginPageState extends State<LoginPage> {
                                 fontWeight: FontWeight.bold),
                           )),
                 decoration: BoxDecoration(
-                    color: Colors.purple,
+                    color: Colors.blue.shade900,
                     borderRadius: BorderRadius.circular(10)),
               ),
             ),
+            SizedBox(height: 20),
             GestureDetector(
                 onTap: () {
                   Navigation.mainNavigation.currentState!

@@ -37,12 +37,12 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
   Widget build(BuildContext context) {
     double widht = MediaQuery.of(context).size.width;
     return Container(
-      width: widht * 0.4,
       decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(.35),
-          borderRadius: BorderRadius.circular(20)),
+          border: Border.all(color: Colors.black.withOpacity(0.5)),
+          borderRadius: BorderRadius.circular(5)),
+      width: widht * 0.4,
       child: new TextFormField(
-        style: TextStyle(color: Colors.blue),
+        style: TextStyle(color: Colors.black),
         controller: widget.controller,
         keyboardType: widget.inputType,
         key: widget.key,
@@ -51,6 +51,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
         validator: widget.validator,
         onFieldSubmitted: widget.onFieldSubmitted,
         decoration: InputDecoration(
+            fillColor: Colors.white,
             border: InputBorder.none,
             filled: true,
             hintText: widget.hintText,

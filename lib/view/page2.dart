@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sailing_loc/navigation.dart';
+import 'package:sailing_loc/global/common/navigation.dart';
 
-class Page1 extends StatefulWidget {
-  const Page1({super.key});
+class Page2 extends StatefulWidget {
+  const Page2({super.key});
 
   @override
-  State<Page1> createState() => _Page1State();
+  State<Page2> createState() => _Page2State();
 }
 
-class _Page1State extends State<Page1> {
+class _Page2State extends State<Page2> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,13 +17,13 @@ class _Page1State extends State<Page1> {
           children: [
             Column(
               children: [
-                Text("Page1"),
+                Text("Page2"),
                 Row(
                   children: [
                     TextButton(
                         onPressed: () {
                           Navigation.mainNavigation.currentState!
-                              .pushNamed("/main/2");
+                              .pushNamed("/main/3");
                         },
                         child: Text("Next"))
                   ],
